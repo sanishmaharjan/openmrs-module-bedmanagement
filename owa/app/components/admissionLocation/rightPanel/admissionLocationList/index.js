@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Breadcrumb from 'components/admissionLocation/rightPanel/breadcrumb';
 import LocationBlock from 'components/admissionLocation/rightPanel/locationBlock';
+import BedLayout from 'components/admissionLocation/rightPanel/bedLayout';
 import AdmissionLocationHelper from 'utilities/admissionLocationHelper';
 
 require('./admissionLocationList.css');
@@ -34,10 +35,8 @@ export default class AdmissionLocationList extends React.Component {
 
     getPage() {
         if (Object.keys(this.childAdmissionLocations).length == 0) {
-            return <div className="location option">
-                <label className="btn btn-primary" onClick={this.addWardClickHandler}>Add Child Admission Location</label>
-                <label className="btn btn-primary">Set Bed Layout</label>
-            </div>;
+            return <BedLayout activeUuid={this.props.activeUuid}
+                admissionLocationFunctions={this.props.admissionLocationFunctions}/>;
         } else {
             return <div>
                 {Object.keys(this.childAdmissionLocations).map((key) => <LocationBlock key={key}
